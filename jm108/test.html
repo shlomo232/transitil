@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footnotes Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .footnote {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        /* The actual tooltip, hidden by default */
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 5px;
+            width: 300px;
+            z-index: 10;
+        }
+
+        /* Show the tooltip on hover */
+        .footnote:hover .tooltip {
+            display: block;
+        }
+
+        .footnotes-section {
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .footnotes-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .footnotes-section ol {
+            list-style-type: decimal;
+        }
+
+        .footnotes-section ol li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <p>This is some text with a footnote.<span class="footnote">[1]<span class="tooltip">This is the first footnote</span></span></p>
+    <p>Here is another sentence with a second footnote.<span class="footnote">[2]<span class="tooltip"><strong>This</strong> is a <em>second</em> footnote with <a href='#'>HTML</a> content</span></span></p>
+
+    <div class="footnotes-section">
+        <h2>Footnotes</h2>
+        <ol id="footnotes-list">
+            <!-- Footnotes will be added here dynamically -->
+        </ol>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const footnotes = document.querySelectorAll(".footnote");
+            const footnotesList = document.getElementById("footnotes-list");
+
+            footnotes.forEach((footnote, index) => {
+                // Assign the correct footnote number
+                const footnoteNumber = index + 1;
+                footnote.firstChild.textContent = `[${footnoteNumber}]`;
+
+                // Append the footnote content to the footnotes section
+                const li = document.createElement("li");
+                li.innerHTML = footnote.querySelector(".tooltip").innerHTML;
+                footnotesList.appendChild(li);
+            });
+        });
+    </script>
+
+    
+    <!-- <sup class="footnote-ref" data-footnote="">1</sup> -->
+</body>
+</html>
+

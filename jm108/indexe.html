@@ -1,0 +1,186 @@
+<html><head>
+
+<title>Jerusalem rail extension</title>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            background-color: black;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .footnote {
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            vertical-align: super;
+            font-size: .83em;
+        }
+
+        /* The actual tooltip, hidden by default */
+        .tooltip {
+            display: none;            
+            position: absolute;
+            background-color: #fff;
+            font-weight: normal;
+            padding: 10px;
+            border: 1px solid #ccc;
+            top: -40px;
+            left: 15px;
+            width: 300px; /* Limit width */
+            white-space: normal; /* Allow wrapping */
+            word-wrap: break-word; /* Ensure wrapping for long words */
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Show the tooltip on hover */
+        .footnote:hover .tooltip {
+            display: block;
+        }
+    </style>
+
+    <script> 
+                document.addEventListener("DOMContentLoaded", function() {
+            const footnotes = document.querySelectorAll(".footnote");
+            const footnotesList = document.getElementById("footnotes-list");
+
+            footnotes.forEach((footnote, index) => {
+                // Assign the correct footnote number
+                const footnoteNumber = index + 1;
+                footnote.firstChild.textContent = `[${footnoteNumber}]`;
+
+                // Append the footnote content to the footnotes section
+                const li = document.createElement("li");
+                li.innerHTML = footnote.querySelector(".tooltip").innerHTML;
+                footnotesList.appendChild(li);
+
+                // Adjust tooltip position dynamically
+                footnote.addEventListener('mouseover', function() {
+                    const tooltip = footnote.querySelector('.tooltip');
+                    const rect = footnote.getBoundingClientRect();
+                    const screenWidth = window.innerWidth;
+                    const tooltipWidth = tooltip.offsetWidth;
+
+                    // If the tooltip will overflow the right edge, adjust its position
+                    if (rect.left + tooltipWidth > screenWidth) {
+                        const overflowAmount = rect.left + tooltipWidth - screenWidth;
+                        tooltip.style.left = `${-15 - overflowAmount}px`;  // Adjust left to prevent overflow
+                        tooltip.style.top = '20px';  // Keep it above the footnote
+                    } else {
+                        // Reset to default position if there's no overflow
+                        tooltip.style.top = '-40px'; 
+                        tooltip.style.left = '15px'; 
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<table width=1020>
+<tr><td colspan=2>Jerusalemites, which train network do you prefer?</td></tr>
+<tr><td><img src=small.png></td><td><img src=large.png></td>
+<tr><td colspan=2>Either network can be built for the same price. So why is the government planning for the smaller network?</td></tr></table>
+
+<h1>OVERVIEW</h1>
+
+<p>Recently the government has approved a plan (<a href="https://mavat.iplan.gov.il/SV4/1/99005048004/310">Plan 108</a>) to extend the Israel Railways line from the Navon station to two additional stops within the city.
+
+<p>Extending the Israel Railways line to more stops in the city is fundamentally an excellent approach to Jerusalem’s transport problems.<span class="footnote">[1]<span class="tooltip">On one hand, it provides quick access from the national rail network to and from various districts of Jerusalem, accelerating travel compared to the current alternative of taking light rail or buses to a single train station. On the other hand, it provides an express overlay for Jerusalem’s transport system, relieving current and future light rail lines which will struggle to meet the demand of Jerusalem’s growing population.</span></span> Unfortunately, the implementation of this approach in Plan 108 is extremely flawed. The stations are placed far underground, which unnecessarily adds to the journey time. The route follows a suboptimal path, missing the Talpiyot industrial area and the Malcha office and shopping center. Perhaps worst of all, enormous amounts of money are planned to be spent on unnecessary underground tunnels and tracks which provide no benefit to travelers, money that could otherwise fund more useful projects elsewhere.
+
+<p>In this document, we will describe the inefficiencies of Plan 108, and then propose an alternative plan which provides more stations and better service at the same cost.
+
+<h1>TRACKS</h1>
+
+<p>In Plan 108, according to a cross-section for the Khan station, no fewer than 8 tracks in parallel are planned to be built underground for part of the route. This is simply absurd, as only 2 tracks will be needed to carry passengers. Building 8 tracks instead of 2 increases the costs on this part of the project by 300% while providing no benefit for riders.
+
+<p><img src=khan.png>
+
+<p>What is the right number of tracks for this project? Let’s first note that this project is intended to be connected to the intercity rail to the airport and Tel Aviv. The intercity rail only has two tracks, one in each direction (and according to <a href="https://geo.mot.gov.il/">Transportation Ministry GIS</a> is only intended to carry 13 trains per hour, well below the theoretical capacity of two tracks). Since every train in this project will continue on the intercity tracks, there is no point in having more than two tracks, as no more trains will be able to run.
+
+<p>So why 8 tracks? It appears that of the 8 tracks, 4 are intended for in service trains, while 4 are intended as train storage tracks. As we have already stated, 2 of the 4 in service tracks are superfluous. But beyond that, all 4 of the storage tracks are superfluous. There is no real need to store trains in Jerusalem at all. Trains can instead be stored in some other location such as Lod, in which case their first trip will be from Lod to Jerusalem, followed by a return trip from Jerusalem to some other destination, and so on.
+
+<p>Nevertheless, there is some small value in having storage tracks in Jerusalem, in that trains from Jerusalem can leave earlier in the morning, without having to first travel from a place like Lod. But to provide this value through a large number of underground storage tracks is bizarre. Underground tunneling is expensive – far more expensive than building tracks on the surface – and therefore large-scale underground storage of trains is extremely rare worldwide. A much better solution would be to have the station on the surface. And luckily, there already exists a surface train yard in this part of Jerusalem – in Malcha. Rather than building 8 underground train storage tunnels, 2 tracks should be extended in their tunnel to Malcha to the existing yard there (which can be expanded, if necessary, at a lower cost as it is above ground). This would have the additional benefit of providing additional rail stations in both Talpiyot industrial area and Malcha.
+
+<p>Combining what we have said, tremendous cost savings can be realized from continuing the route as 2 tracks to Malcha. Let us estimate the savings. According to the document חתך לאורך the main tunnels (shown in red) will be 6km long and the side storage tunnels (shown in blue) 2.3km long. Each of these will have 4 tracks, for a total of 33.2 track-km. Instead, we propose making the route 2 tracks only, but extending it an additional 2km (roughly) to the existing tracks near Malcha (just west of Dov Yosef street). The whole route would be 8km long, and the total length 16 track-km. Less than half the tunneling would be required, and less than half the tunneling cost, for a route which would serve twice as many stations (4 instead of 2). The cost per station would be just 1/4 of the current cost in the plan.
+
+<h1>TALPIYOT</h1>
+
+<p>Plan 108 only includes two new stations. However, from the continuation of the tracks it is apparent where the continuation of the route will be, if it is ever continued, as has been suggested in public discussions. And that continuation, unfortunately, is to the wrong location.
+
+<p>Already today, the Talpiyot industrial area is a major center of employment and commerce in Jerusalem. But it is planned to become even more of a center in the future. According to the “Rova Talpiyot Hamithadesh” plan,<span class="footnote">[2]<span class="tooltip">See: <a href="https://magdilim.co.il/300120240925/">רובע תלפיות בירושלים צובר תנופה כמודל לשילוב מגורים ומסחר</a>, <a href="https://www.jda.gov.il/%D7%AA%D7%9B%D7%A0%D7%99%D7%AA-%D7%90%D7%91-%D7%AA%D7%9C%D7%A4%D7%99%D7%95%D7%AA-%D7%97%D7%93%D7%A9/">תכנית אב תלפיות</a></span></span> the Talpiyot industrial area will include 2 million square meters of development, including 8500 residential units as well as much more employment and commerce than at present. Three light rail lines will be built to provide access to this enormous development from the rest of Jerusalem.
+
+<p>One would expect this to be a natural destination for intercity rail as well. The development here will be much denser than in any of the surrounding neighborhoods. And as a center of employment, it will draw numerous workers from outside the city as well. But inexplicably, this rail plan does not serve Talpiyot industrial area. Instead, it bypasses the area.
+
+<p>The following diagram shows the planned development of “Rova Talpiyot”, with a blue overlay for the tracks of Plan 108. The blue circle shows the location of a future station on this line (“Tzomet Oranim”) as has been discussed in other documents,<span class="footnote">[3]<span class="tooltip">For example: <a href="https://www.calcalist.co.il/local_news/article/sjwmwrvt9">תיירים או תושבים: את מי תשרת תחנת הרכבת בירושלים</a></span></span> in a lower-density residential neighborhood 800m north of the center of Rova Talpiyot. Apparently, rail travelers wishing to reach Talpiyot will need to get off at the Tzomet Oranim station and then take an additional light rail ride to reach Talpiyot. This additional transfer will makes access to Talpiyot much slower and less convenient, and will also add congestion to the light rail, which is likely to be congested in any case due to Jerusalem’s population growth.
+
+<p><img src=talpiyot.png>
+
+<p>The better alternative (approximate alignment shown in red) is clear – to divert the tracks further south, so that a station can be built in the center of Rova Talpiyot. The higher-density area of Talpiyot will be directly served by a station, while the lower-density area of Tzomet Oranim will be accessible with a quick light rail ride.
+
+<h1>STATION DEPTH</h1>
+
+<p>The existing Jerusalem-Tel Aviv train was advertised as allowing a trip between the cities in 28 minutes. In reality, as of 2024 the trip time is 31 minutes to Tel Aviv Hahaganah, the closest Tel Aviv station. But even 31 minutes is much less than the actual travel time, because it takes <a href="https://www.themarker.com/blogs/tahbura/2019-02-07/ty-article/0000017f-f897-d47e-a37f-f9bf93490000">10-15 minutes</a> simply to descend from Jaffa St through a series of elevators and escalators to the platforms. This makes the actual travel time 41-46 minutes to Tel Aviv Hahaganah (and 51-56 minutes to Tel Aviv Savidor Central), barely faster than the preexisting buses, and the train runs less frequently than buses which means more waiting time on average. Granted, the train is more comfortable than buses, and has better transfers to trains to other parts of the country, factors which ensure that it still has a large ridership. But the deep underground station ensures that a supposedly “high speed” train is in fact no faster than the buses it is supposed to replace.
+
+<p>Putting the Navon platforms 80m underground was essentially unavoidable: the platforms are found shortly after the Emek Haarazim bridge, and raising the platforms would mean raising the bridge and greatly increasing its cost. However, in future train stations, which are built far away from this bridge, platforms should be designed to be much closer to the surface to ensure quick access.
+
+<p>Unfortunately, in Plan 108, the planned stations are also extremely far underground. And unlike with Navon station, here there is no good technical reason for the depth: it is a choice by the designers which inconveniences travelers while also greatly increasing construction cost (because more excavation costs more money).
+
+<p>Assuming that the choice of deep stations on this line was not totally arbitrary, from the documents one can see two factors that contribute to the design depth (while not totally explaining it).
+
+<p>1) The track route chosen unnecessarily goes under a valley (along the west edge of Breichat Hasultan) north of the Khan station. As it must be 20m underground in the valley, it must be deeper than that at the station location (as it is not practical for tracks to climb a large elevation in the short distance between the valley and the station). The valley is about 16m lower than the station location (according to the document חתך אורך תלת מימד), which makes the Khan station unnecessarily 16m further underground than it could be. If the routed were adjusted to be just 100m to the west near Breichat Hasultan, it would be out of the valley and this 16m depression would be unnecessary.
+
+<p>2) In general, tunnels must be a certain distance underground, so that the rock above the tunnel is thick and strong enough to support itself and surface structures. From the document חתך אורך תלת מימד, it appears that the minimum depth chosen for this was 15m above the roof of a single tunnel, and 20m about the roof of a double tunnel (such as at the turnout between two tracks):
+
+<p><img src=depth.png>
+
+<p>However, there is no actual need to use double tunnels. The turnouts in Plan 108 are needed primarily to provide access to the 4 storage tracks, which should not be built (as discussed previously). In addition, turnouts are sometimes used to allow trains to reverse direction at an intermediate station. However, if the track is continued to Malcha then all trains can reverse direction there, so reversing direction after the City Center or Khan stations is superfluous. In short, there is no reason to need more than 15 meters of rock above the tunnel in any part of this project.
+
+<p>In order to minimize station construction costs and provide maximum convenience to passengers, stations should be as close to the surface as possible. Let us assume a minimum station depth of 15m (to provide 15m of rock above each tunnel). 
+
+<p>The current cross-section of Plan 108 looks as follows:
+
+<p><img src=hatach.png>
+
+<p>By rerouting to avoid the valley of Breichat Hasultan (roughly following David Hamelech St instead), and avoiding unnecessary station depth, the following cross-section can be used instead:
+
+<p><img src=hatachnew.png>
+
+<p>Now, the top of the rail tunnel in the Khan station is only 15m below ground (compared to 48m in Plan 108), while the City Center station is 20-41m below ground (compared to 65-86m in Plan 108). This means 33m less climbing for passengers in the Khan station, and 45m less climbing in the City Center station. Both stations are less than half as deep, which also makes them roughly 1/4 as expensive to construct.<span class="footnote">[4]<span class="tooltip">This estimate is based on the graph in <a href="https://transitcosts.com/wp-content/uploads/Italian_Case_Study.pdf">Transit Costs Project: The Italian Case</a> p.56, based on stations of 20-45 meters depth (no stations deeper than 45 meters appear in the study)</span></span> Note that in practice the stations will be even cheaper with the changes suggested in this document, as they will only serve 2 tracks rather than 4.
+
+<p>In practice, the tracks near the Khan station can probably be built even closer to the surface than 15m, using other construction methods (cut-and-cover or mining rather than TBM). Since tracks here will not be located under buildings, but only under roads and parks, more disruptive construction methods can be used while causing a tolerable level of inconvenience during construction.
+
+<p>Having stations close to the surface means that there is no need to choose between low-capacity elevators and very slow escalators, as is the case in Navon station today. The station should be planned so that travelers need only take two short and quick escalators from the street to the train platform: one to a mezzanine with fare gates, and another to the rail platform.
+
+<h1>ALTERNATIVE PLAN</h1>
+
+<p>So far we have described several ways of massively decreasing costs for a train line to Khan station: fewer tracks, no underground storage tracks, more shallow stations. What to do with all the money that is saved with these measures? I propose to invest it in more train lines in Jerusalem, so that the overall cost of the project is the same, but the benefit greater.
+
+<p>In general, the cost of train tunnels is proportional to the length of the tunnels, and the cost of stations is a function of the size and depth of the station. Therefore, one can say we have a “budget” of 33.2 track-km, as well as approximately 6 shallow stations (in place of 2 deep four-track stations). We can take these numbers and design a network which will provide optimal benefit to the city and country.
+
+<p>It appears that the optimal network is something like this:
+
+<p><img src=largeend.png>
+
+<p>In Navon station there are currently 4 tracks, corresponding to 2 train lines. It is natural to extend one of these lines south (to the city center and Khan and eventually to Malcha), and the other one to the north.
+
+<p>I propose three stops on the northern branch. Pisgat Zeev Mall is a central location for the neighborhoods of the far north of the city. It could also serve a security need in connecting Pisgat Zeev and Neveh Yaakov to the city center in the case road connections were interrupted by violence. Ammunition Hill and Bar Ilan each provide transfers to multiple light rail lines. Despite the closeness of these stops, they are likely both justified because each serves a distinct community (Arab and Haredi) which is not well served by any other stop in the system. (Ammunition Hill will become more important as a central location for the Arab community once the Brown Line light rail, which serves many Arab neighborhoods and passes by Ammunition Hill, is built.)
+
+<p>With the pictured plan, the total track length would be 28km (below the budget of 33.2km) and 6 stations would be needed (equal to the budget of 6 stations).
+
+<p>It is important to realize that not only would such a network make it easy to reach any part of Jerusalem from outside the city, but the network would be useful for many city trips as well. For example, Pisgat Zeev to Talpiyot would be a journey of approximately 16 minutes,<span class="footnote">[5]<span class="tooltip">This trip would cover 5 stops and 12km on fast new tracks. A similar trip elsewhere in the world is West Drayton-Taplow on Crossrail in London, which scheduled to take 14m. Adding 2m for transfers gives 16m.</span></span> with a transfer in Navon station (the transfer would take place 80m underground and would not require elevators or escalators). This is far faster than buses or the (future) light rail, and would take many riders off the light rail (which is projected to be overcrowded as the city grows). In effect, this system would play the role of a metro system in Jerusalem, making the construction of a dedicated metro unnecessary.
+
+<h1>FOOTNOTES</h1>
+<p><ol id="footnotes-list"></ol>
+</body></html>
